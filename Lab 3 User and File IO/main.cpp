@@ -9,6 +9,7 @@ Learn the basics of Input and Output with user input and file input
 //include necessary libraries
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -44,6 +45,8 @@ float stanDev;
 void inputValues();
 void meanCalc();
 void stanDevCalc();
+void outputMeanSTD();
+void inputOutput2file();
 
 // main function
 int main()
@@ -51,6 +54,36 @@ int main()
 	inputValues();
 	meanCalc();
 	stanDevCalc();
+	outputMeanSTD();
+	
+	inputOutput2file();
+
+	return 0;
+}
+
+// scans input file (inMeanStd.dat) and uses the values inside and outputs their mean and standard deviation to the output file (outMeanStd.dat)
+void inputOutput2file()
+{
+	ifstream inFile;
+	inFile.open("inMeanStd.dat");
+	inFile >> value1;
+	inFile >> value2;
+	inFile >> value3;
+	inFile >> value4;
+
+	meanCalc();
+	stanDevCalc();
+
+	ofstream outFile;
+	outFile.open("OutMeanStd.dat");
+	outFile << "Mean: " << mean << "\n" << "Standard Deviation: " << stanDev;
+}
+
+// outputs the mean and standard deviation to the command window
+void outputMeanSTD()
+{
+	cout << "The mean of these Values is: " << mean;
+	cout << endl << "The standard deviation is: " << stanDev;
 }
 
 // calculates the standard deviation with the results of meanCalc() and inputValues()
@@ -71,15 +104,13 @@ void stanDevCalc()
 	allSQdiv4 = allSQ / 4;
 
 	stanDev = sqrt(allSQdiv4);
-
-	cout << endl << "The standard deviation is: " << stanDev;
 }
 
 // calculates the mean using the values from inputValues()
 void meanCalc()
 {
 	mean = (value1 + value2 + value3 + value4) / 4.0;
-	cout << "The mean of these Values is: " << mean;
+	
 }
 
 // recieves input from the user that is used throughout the program

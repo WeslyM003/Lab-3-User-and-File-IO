@@ -12,7 +12,7 @@ Learn the basics of Input and Output with user input and file input
 #include <fstream>
 
 using namespace std;
-
+ 
 // creates the int values for the initial input
 int value1;
 int value2;
